@@ -35,7 +35,7 @@ export default function App() {
     try {
       const newArticle = await createArticle({ title, body }); // save to firestore
       setArticles([newArticle, ...articles]); // add to articles list - update ui
-      setArticle(null); // current article
+      setArticle(newArticle); // current article
       setWriting(false); // Close form - back to reading mode
     }catch(err){
       console.error("Error creating article:", err);
