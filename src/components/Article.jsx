@@ -2,7 +2,28 @@ import {format} from "date-fns";
 import "../styles/components/Article.css";
 import {FaTrash, FaEdit} from "react-icons/fa";
 
-export default function Article({ article , onDelete, onEdit}) {
+export default function Article({ article , onDelete, onEdit, user}) {
+
+  const handleDeleteClick = async () => {
+    if (window.confirm("Are you sure you want to delete this article?")) {
+      try {
+        await onDelete(article.id);
+      } catch (error) {
+        alert("You can only delete your own articles");
+        console.error("Delete error:", error);
+      }
+    }
+  };
+
+  const handleEditClick = async () => {
+    try {
+      await onEdit(article);
+    } catch (error) {
+      alert("You can only edit your own articles");
+      console.error("Edit error:", error);
+    }
+  };
+  
     return (
       <article>
         {!article ? (
@@ -17,17 +38,13 @@ export default function Article({ article , onDelete, onEdit}) {
               <div className="btn-group">
                 <button 
                   className="delete-icon" 
-                  onClick={() => {
-                    if (window.confirm("Are you sure you want to delete this article?")) {
-                      onDelete(article.id);
-                    }
-                  }}
+                  onClick={handleDeleteClick}
                 >
                   <FaTrash />
                 </button>
                 <button 
                   className="edit-icon"
-                  onClick={() => onEdit(article)}>
+                  onClick={handleEditClick}>
                   <FaEdit />
                 </button>
               </div>

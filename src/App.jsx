@@ -57,6 +57,7 @@ export default function App() {
       }
     } catch(err){
       console.error("Error deleting article:", err);
+      alert("You can only delete your own articles");
     }
   }
 
@@ -75,6 +76,7 @@ export default function App() {
       setWriting(false); // Close form - back to reading mode
     } catch(err){
       console.error("Error updating article:", err);
+      alert("You can only Update your own articles");
     }
   }
 
@@ -118,7 +120,8 @@ export default function App() {
         <Article 
           article={article} 
           onDelete={handleDeleteArticle} 
-          onEdit={handleEditClick}/>) 
+          onEdit={handleEditClick}
+          user={user}/>) 
         : (
         <div className="no-article-selected">
           <div className="user-details">

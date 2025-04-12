@@ -9,10 +9,13 @@ import {collection,
       deleteDoc,
       doc,
       updateDoc} from 'firebase/firestore';
+import {auth} from './firebaseConfig';
 
 
 export async function createArticle({ title, body, category, readTime, isFeatured, authorBio }) {
     try {
+      if (!auth.currentUser) throw new Error("User not authenticated");
+
       const docRef = await addDoc(collection(db, "articles"), {
         title,
         body,
@@ -20,6 +23,7 @@ export async function createArticle({ title, body, category, readTime, isFeature
         readTime,
         isFeatured,
         authorBio,
+        authorId: auth.currentUser.uid, 
         date: serverTimestamp(),
       });
        // Get the newly created document to include the server-generated date
