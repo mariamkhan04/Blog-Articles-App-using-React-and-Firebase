@@ -11,10 +11,10 @@ export default function App() {
   const [articles, setArticles] = useState([]);
   const [article, setArticle] = useState(null);
   const [writing, setWriting] = useState(null);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   // const [error, setError] = useState("");
   const user = useAuthentication();
+  const [navOpen, setNavOpen] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -96,13 +96,15 @@ export default function App() {
       <header>
         <p>My Blogs App - Blogify </p>
         <div className="header-btns">
-          {user &&  <button 
+          {user && 
+          <div className="mobile-menu-container">
+          <button 
             className="mobile-menu-btn" 
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            onClick={() => setNavOpen(!navOpen)}
           >
-            ☰
+            {navOpen ? 'X' : '☰'}
           </button>
-          }
+        </div>}
           {user && <button onClick={goToHome} className="home-btn">Home</button>}
           {user && <button onClick={()=>setWriting('new')}>New Article</button>}
           {!user ? <SignIn /> : <SignOut />}
@@ -117,7 +119,7 @@ export default function App() {
       )}
 
       <div className="app-grid">
-        {user && <Nav articles={articles} setArticle={setArticle} className={mobileMenuOpen ? "active" : ""} />}
+        {user && <Nav articles={articles} setArticle={setArticle} className={navOpen ? 'nav-open' : 'nav-closed'}/>}
 
         {!user ? "" : 
         writing ? (

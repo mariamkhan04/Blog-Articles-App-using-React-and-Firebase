@@ -39,7 +39,7 @@
   }
   .nav-article-item {
     padding: 0.5rem 1rem;
-    margin: 0;
+    margin: 0.5rem;
     border-bottom: 1px solid #eee;
   }  
   .nav-article-item:hover{
@@ -77,7 +77,7 @@
   }
 
   /* Mobile specific styles */
-@media (max-width: 768px) {
+/* @media (max-width: 768px) {
   .nav-articles {
     max-height: none;
     height: calc(100% - 40px);
@@ -89,5 +89,47 @@
   
   .nav-article-item.featured {
     background-color: #fff8e1;
+  }
+} */
+
+/* Replace the existing @media rules in Nav.css with these: */
+@media (max-width: 768px) {
+  nav {
+    min-height: auto;
+    padding: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .nav-articles {
+    max-height: 300px;
+  }
+
+  .nav-article-item {
+    padding: 0.8rem;
+    margin: 0.3rem 0;
+    font-size: 0.9rem;
+  }
+
+  h3 {
+    font-size: 1.1rem;
+    padding: 0.5rem;
+    position: sticky;
+    top: 0;
+    background-color: #ffffff;
+  }
+}
+
+@media (max-width: 576px) {
+  nav {
+    max-height: 250px;
+  }
+
+  .nav-articles {
+    max-height: 200px;
+  }
+
+  .nav-article-item {
+    padding: 0.6rem;
+    font-size: 0.85rem;
   }
 }
