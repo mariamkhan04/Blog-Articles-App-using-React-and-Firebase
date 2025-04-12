@@ -1,14 +1,15 @@
 body {
   margin: 0;
   font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #dee9ff; 
 }
 
 .App {
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
   background-color: #dee9ff;
   min-height: 100vh;
+  max-width: 100vw;
 }
 
 /* header */
@@ -24,6 +25,7 @@ header {
 header p{
   font-size: 18px;
   font-weight: bold;
+  align-items: center;
 }
 
 .header-btns{
@@ -117,53 +119,104 @@ footer {
   margin-bottom: 0;
 }
 
-/* Medium devices (tablets, 768px and up) */
+/* Mobile menu button */
+.mobile-menu-btn {
+  display: none;
+  background: none;
+  border: none;
+  color: #2c3e50;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0.5rem;
+}
+/* Mobile menu styles */
 @media (max-width: 768px) {
+  .mobile-menu-btn {
+    display: block;
+  }
+  
+  nav {
+    position: fixed;
+    top: 60px;
+    left: -100%;
+    width: 80%;
+    height: calc(100vh - 60px);
+    transition: all 0.3s ease;
+    z-index: 1000;
+    background-color: white;
+  }
+  
+  nav.active {
+    left: 0;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
+  }
+  
   .app-grid {
     grid-template-columns: 1fr;
-    grid-template-rows: auto auto;
   }
-
-  nav {
-    min-height: auto;
-    max-height: 300px;
-    overflow-y: auto;
+  
+  .welcome-screen {
+    padding: 1rem;
+    height: calc(100vh - 120px);
   }
-
-  .article-form {
-    margin: 0 1rem;
-    padding: 1.5rem;
-  }
-
+  
   .animated-title {
     font-size: 2.5rem;
+    text-align: center;
+  }
+  
+  .tagline {
+    font-size: 1rem;
+    text-align: center;
+  }
+  
+  footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    padding: 0.5rem;
+    font-size: 0.8rem;
+  }
+  
+  .no-article-selected {
+    padding-bottom: 60px; 
   }
 }
 
-/* Small devices (landscape phones, 576px and up) */
-@media (max-width: 576px) {
+/* Smaller mobile devices */
+@media (max-width: 480px) {
   header {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .header-btns {
-    margin-top: 1rem;
     width: 100%;
-    justify-content: space-between;
-  }
-
-  .article-display {
-    padding: 1rem;
-    margin: 0.5rem;
-  }
-
-  .article-display h2 {
-    font-size: 1.5rem;
-  }
-
-  .article-meta {
     flex-wrap: wrap;
-    gap: 0.5rem;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5rem;
+  }
+  
+  header p {
+    font-size: 1.2rem;
+    padding: 1rem;
+    margin-right: auto;
+    text-align: center;
+  }
+  
+  .header-btns {
+    gap: 0.3rem;
+    flex-wrap: wrap;
+    padding-right: 2rem;
+  }
+  
+  .header-btns button {
+    padding: 0.3rem 0.6rem;
+    font-size: 0.8rem;
+  }
+  
+  .animated-title {
+    font-size: 2rem;
+  }
+  
+  .article-form {
+    margin: 0 0.5rem !important;
+    padding: 1rem !important;
   }
 }

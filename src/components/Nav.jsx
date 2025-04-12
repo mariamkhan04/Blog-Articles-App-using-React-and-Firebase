@@ -1,14 +1,22 @@
 import '../styles/components/Nav.css';
 
-export default function Nav({ articles, setArticle }) {
+export default function Nav({ articles, setArticle, className }) {
+  const handleArticleClick = (article) => {
+    setArticle(article);
+    // Close mobile menu when an article is selected
+    if (window.innerWidth <= 768) {
+      document.querySelector('nav').classList.remove('active');
+    }
+  };
+
     return (
-      <nav className="nav-articles">
+      <nav className={`${className || 'nav-articles'}`}>
 
         <h3>Featured Blog Articles</h3>
         {articles.filter(a => a.isFeatured).map(a => (
           <p 
             key={`featured-${a.id}`} 
-            onClick={() => setArticle(a)}
+            onClick={handleArticleClick(a)}
             className="nav-article-item featured"
           >
             ⭐ {a.title}

@@ -95,3 +95,35 @@
   .edit-icon:hover{
     color: #2980b9;
   }
+
+  @media(max-width: 768px){
+    .article-display {
+      padding: 1rem;
+      margin: 1.5rem;
+    }
+  
+    .article-display h2 {
+      font-size: 1.5rem;
+    }
+  
+    .body {
+      font-size: 1rem;
+    }
+  
+    .date, .read-time {
+      font-size: 0.8rem;
+    }
+  
+    .category, .featured-badge {
+      font-size: 0.7rem;
+    }
+  
+    .author-bio h3 {
+      font-size: 1.2rem;
+    }
+  
+    .author-bio p {
+      font-size: 0.9rem;
+    }
+  }
+    

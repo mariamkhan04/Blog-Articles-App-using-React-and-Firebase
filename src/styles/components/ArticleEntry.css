@@ -1,4 +1,3 @@
-/* form styles */
 .article-form {
     display: flex;
     flex-direction: column;
@@ -105,3 +104,70 @@
     margin-bottom: 1.5rem;
     font-weight: 500;
   }
+  
+@media (max-width: 768px) {
+  .article-form {
+    margin: 0 0.5rem !important;
+    padding: 1rem !important;
+  }
+  
+  .form-group textarea {
+    min-height: 150px;
+  }
+  
+  .form-buttons {
+    flex-direction: column;
+  }
+  
+  .form-buttons button {
+    width: 100%;
+    margin-bottom: 0.5rem;
+  }
+}
+@media (max-width: 425px) {
+  .article-form {
+    margin: 0 0.25rem !important;
+    padding: 0.75rem !important;
+  }
+
+  .form-group {
+    margin-bottom: 1rem;
+  }
+
+  .form-group label {
+    font-size: 0.9rem;
+    margin-bottom: 0.3rem;
+  }
+
+  .form-group input[type="text"],
+  .form-group input[type="number"],
+  .form-group select,
+  .form-group textarea {
+    padding: 0.6rem;
+    font-size: 0.9rem;
+  }
+
+  .form-group textarea {
+    min-height: 120px;
+  }
+
+  .checkbox-group label {
+    font-size: 0.85rem;
+  }
+
+  .form-buttons {
+    margin-top: 1.5rem;
+    gap: 0.5rem;
+  }
+
+  .form-buttons button {
+    padding: 0.7rem 1rem;
+    font-size: 0.9rem;
+  }
+
+  .error {
+    padding: 0.6rem;
+    font-size: 0.85rem;
+    margin-bottom: 1rem;
+  }
+}

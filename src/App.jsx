@@ -11,6 +11,8 @@ export default function App() {
   const [articles, setArticles] = useState([]);
   const [article, setArticle] = useState(null);
   const [writing, setWriting] = useState(null);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
   // const [error, setError] = useState("");
   const user = useAuthentication();
 
@@ -94,6 +96,13 @@ export default function App() {
       <header>
         <p>My Blogs App - Blogify </p>
         <div className="header-btns">
+          {user &&  <button 
+            className="mobile-menu-btn" 
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          >
+            ☰
+          </button>
+          }
           {user && <button onClick={goToHome} className="home-btn">Home</button>}
           {user && <button onClick={()=>setWriting('new')}>New Article</button>}
           {!user ? <SignIn /> : <SignOut />}
@@ -108,7 +117,7 @@ export default function App() {
       )}
 
       <div className="app-grid">
-        {user && <Nav articles={articles} setArticle={setArticle} />}
+        {user && <Nav articles={articles} setArticle={setArticle} className={mobileMenuOpen ? "active" : ""} />}
 
         {!user ? "" : 
         writing ? (

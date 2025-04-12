@@ -1,9 +1,18 @@
 /* Navbar Styling */
-nav {
+  nav {
     background-color: #ffffff;
     padding: 20px;
     box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
     min-height: calc(100vh - 60px); /* Full height minus header */
+  }
+
+  nav h3 {
+    padding: 0.8rem 1rem;
+    margin: 0;
+    background-color: #f8f9fa;
+    position: sticky;
+    top: 0;
+    z-index: 10;
   }
   
   nav p {
@@ -14,7 +23,7 @@ nav {
     font-weight: 500;
     color: #2c3e50;
   }
-  
+
   nav p:hover {
     background-color: #f0f5ff;
     text-decoration: none;
@@ -28,6 +37,11 @@ nav {
     overflow-y: auto;
     padding-right: 8px;
   }
+  .nav-article-item {
+    padding: 0.5rem 1rem;
+    margin: 0;
+    border-bottom: 1px solid #eee;
+  }  
   .nav-article-item:hover{
     cursor: pointer;
   }
@@ -61,3 +75,19 @@ nav {
     color: #666;
     font-size: 1.2rem;
   }
+
+  /* Mobile specific styles */
+@media (max-width: 768px) {
+  .nav-articles {
+    max-height: none;
+    height: calc(100% - 40px);
+  }
+  
+  .nav-article-item {
+    padding: 1rem;
+  }
+  
+  .nav-article-item.featured {
+    background-color: #fff8e1;
+  }
+}
