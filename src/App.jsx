@@ -123,14 +123,14 @@ export default function App() {
         <div className="no-article-selected">
           <div className="user-details">
             <UserDetails />
-            
+
           </div>
           <p>Select an article from the sidebar or create a new one</p>
         </div>
       )}
       </div>
 
-      <footer>Copyrights @ <a href="https://github.com/mariamkhan04">Mariam Khan</a></footer>
+      <footer>Copyrights @ <a href="https://github.com/mariamkhan04" target="_blank">Mariam Khan</a></footer>
 
     </div>
   )
