@@ -3,15 +3,15 @@ import Nav from "./components/Nav";
 import Article from "./components/Article";
 import ArticleEntry from "./components/ArticleEntry";
 import { useAuthentication } from "./services/authService";
-import { fetchArticles, createArticle } from "./services/articleService";
-import "./App.css";
-import { SignIn, SignOut } from "./components/Auth";
+import { fetchArticles, createArticle, deleteArticle, updateArticle } from "./services/articleService";
+import "./styles/App.css";
+import { SignIn, SignOut, UserDetails } from "./components/Auth";
 
 export default function App() {
   const [articles, setArticles] = useState([]);
   const [article, setArticle] = useState(null);
   const [writing, setWriting] = useState(null);
-  const [error, setError] = useState("");
+  // const [error, setError] = useState("");
   const user = useAuthentication();
 
   useEffect(() => {
@@ -31,9 +31,15 @@ export default function App() {
     }
   }, [user])
 
-  async function addArticle({ title, body }) {
+  async function addArticle({ title, body, category, readTime, isFeatured, authorBio}) {
     try {
-      const newArticle = await createArticle({ title, body }); // save to firestore
+      const newArticle = await createArticle({ 
+        title,
+        body,
+        category,
+        readTime,
+        isFeatured,
+        authorBio }); // save to firestore
       setArticles([newArticle, ...articles]); // add to articles list - update ui
       setArticle(newArticle); // current article
       setWriting(false); // Close form - back to reading mode
@@ -41,31 +47,53 @@ export default function App() {
       console.error("Error creating article:", err);
     }
   }
-  function handleNewArticleClick() {
-    if (!user) {
-      setError("Error: Please Sign In with Google Account first to create new articles");
-      return;
+
+  async function handleDeleteArticle(articleId) {
+    try{
+      await deleteArticle(articleId);
+      setArticles(articles.filter(a => a.id !== articleId)); // remove from articles list
+      if(article && article.id === articleId) {
+        setArticle(null); // remove current article
+      }
+    } catch(err){
+      console.error("Error deleting article:", err);
     }
-    setWriting(true);
-    setError("");
   }
 
-  function handleShowArticlesClick() {
-    if (!user) {
-      setError("Error: Please Sign In with Google Account to view articles");
-      return;
+  async function handleUpdateArticle(articleId, updatedData) {
+    try{
+      const updatedArticle = await updateArticle(articleId, {
+        title: updatedData.title,
+        body: updatedData.body,
+        category: updatedData.category || "technology", // default category if undefined
+        readTime: updatedData.readTime || 5,
+        isFeatured: updatedData.isFeatured || false,
+        authorBio: updatedData.authorBio || "",
+      });
+      setArticles(articles.map(a => a.id === articleId ? updatedArticle : a)); // update articles list
+      setArticle(updatedArticle); // update current article
+      setWriting(false); // Close form - back to reading mode
+    } catch(err){
+      console.error("Error updating article:", err);
     }
-    setShowArticles(true);
-    setError("");
   }
 
+  function handleEditClick(articleToEdit) {
+    setArticle(articleToEdit); // Set the current article
+    setWriting('edit'); // Switch to edit mode
+  }
+
+  function goToHome() {
+    setArticle(null);
+    setWriting(false);
+  }
   return (
     <div className="App">
       <header>
         <p>My Blogs App - Blogify </p>
-        {error && <div className="error-message">{error}</div>}
         <div className="header-btns">
-          <button onClick={handleNewArticleClick}>New Article</button>
+          {user && <button onClick={goToHome} className="home-btn">Home</button>}
+          {user && <button onClick={()=>setWriting('new')}>New Article</button>}
           {!user ? <SignIn /> : <SignOut />}
         </div>
       </header>
@@ -82,15 +110,28 @@ export default function App() {
 
         {!user ? "" : 
         writing ? (
-        <ArticleEntry addArticle={addArticle} />) 
+        <ArticleEntry 
+          addArticle={addArticle} 
+          editArticle={handleUpdateArticle} 
+          articleToEdit={writing === 'edit' ? article : null}/>) 
         : article ? (
-        <Article article={article} />) 
-        :(
+        <Article 
+          article={article} 
+          onDelete={handleDeleteArticle} 
+          onEdit={handleEditClick}/>) 
+        : (
         <div className="no-article-selected">
+          <div className="user-details">
+            <UserDetails />
+            
+          </div>
           <p>Select an article from the sidebar or create a new one</p>
         </div>
       )}
       </div>
+
+      <footer>Copyrights @ <a href="https://github.com/mariamkhan04">Mariam Khan</a></footer>
+
     </div>
   )
 }

@@ -1,0 +1,96 @@
+.article-display {
+    padding: 2rem;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    margin: 1rem;
+  }
+  
+  .article-display h2 {
+    font-size: 2rem;
+    color: #2c3e50;
+    margin-bottom: 1rem;
+  }
+  
+  .date {
+    font-size: 0.9rem;
+    color: #7f8c8d;
+    margin-bottom: 1.5rem;
+  }
+  
+  .body {
+    white-space: pre-wrap;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #34495e;
+  }
+  
+  .article-meta {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    align-items: center;
+  }
+  
+  .category {
+    background: #e0e6ff;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    color: #4a6bff;
+    text-transform: capitalize;
+  }
+  
+  .featured-badge {
+    background: #ffeb3b;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    color: #000;
+    font-weight: bold;
+  }
+  
+  .read-time {
+    font-size: 0.9rem;
+    color: #7f8c8d;
+  }
+  
+  .author-bio {
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #eee;
+  }
+  
+  .author-bio h3 {
+    color: #2c3e50;
+    margin-bottom: 0.5rem;
+  }
+  
+  .author-bio p {
+    font-style: italic;
+    color: #555;
+  }
+
+  .delete-icon{
+    color: #e74c3c;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    font-size: 1rem;
+  }
+
+  .delete-icon:hover{
+    color: #c0392b;
+  }
+
+  .edit-icon{
+    color: #3498db;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    font-size: 1rem;
+  }
+
+  .edit-icon:hover{
+    color: #2980b9;
+  }

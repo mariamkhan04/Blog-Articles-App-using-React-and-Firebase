@@ -8,10 +8,14 @@ export function SignOut(){
     return(
         <div>
             <button onClick={logout}>Sign Out</button>
-            <span style={{
-                marginLeft: "10px",
-                fontWeight: "bold",
-            }}>Hello, {loggedInUserDisplayName()}</span>
         </div>
     );
+}
+
+export function UserDetails(){
+    return (
+    <span style={{
+        marginLeft: "10px",
+        fontWeight: "bold",
+    }}>Hello, {loggedInUserDisplayName()}</span>);
 }
