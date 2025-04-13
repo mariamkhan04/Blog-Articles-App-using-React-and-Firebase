@@ -118,9 +118,9 @@ footer {
   padding: 10px;
   margin-bottom: 0;
 }
-/* Add this to your existing App.css */
+
 .mobile-menu-btn {
-  display: none; /* Hidden by default */
+  display: none; 
 }
 @media (min-width: 769px) {
   .mobile-menu-container {

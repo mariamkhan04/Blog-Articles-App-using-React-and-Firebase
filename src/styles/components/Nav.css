@@ -76,23 +76,6 @@
     font-size: 1.2rem;
   }
 
-  /* Mobile specific styles */
-/* @media (max-width: 768px) {
-  .nav-articles {
-    max-height: none;
-    height: calc(100% - 40px);
-  }
-  
-  .nav-article-item {
-    padding: 1rem;
-  }
-  
-  .nav-article-item.featured {
-    background-color: #fff8e1;
-  }
-} */
-
-/* Replace the existing @media rules in Nav.css with these: */
 @media (max-width: 768px) {
   nav {
     min-height: auto;
